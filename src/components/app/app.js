@@ -4,7 +4,7 @@ import WelcomeScreen from '../welcome-screen/welcome-screen';
 
 const App = (props) => {
   const {errorAmount} = props;
-  return <WelcomeScreen errorAmount={errorAmount} />;
+  return <WelcomeScreen errorAmount={errorAmount} onStartClick={() => {}} />;
 };
 
 App.propTypes = {

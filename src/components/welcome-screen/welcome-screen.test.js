@@ -5,13 +5,13 @@ import WelcomeScreen from './welcome-screen';
 describe(`WelcomeScreen`, () => {
   it(`should render correctly with 3 errors`, () => {
     const tree = renderer
-      .create(<WelcomeScreen errorAmount={3} />)
+      .create(<WelcomeScreen errorAmount={3} onStartClick={() => {}} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
   it(`should render correctly with 2 errors`, () => {
     const tree = renderer
-      .create(<WelcomeScreen errorAmount={2} />)
+      .create(<WelcomeScreen errorAmount={2} onStartClick={() => {}} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
