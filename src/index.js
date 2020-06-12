@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import App from './components/app/app';
 
 ReactDOM.render(
-    <App errorsAmount={3} />,
+    <App errorAmount={3} />,
     document.querySelector(`#root`)
 );
