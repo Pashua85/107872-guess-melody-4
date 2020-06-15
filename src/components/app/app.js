@@ -5,7 +5,6 @@ import WelcomeScreen from '../welcome-screen/welcome-screen';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
 
-
 const App = (props) => {
   const {errorAmount} = props;
   return (

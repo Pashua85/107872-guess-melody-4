@@ -32,7 +32,13 @@ exports[`ArtistQuestionScreen should render correctly 1`] = `
         cx="390"
         cy="390"
         r="370"
-        style="filter: url(#blur); transform: rotate(-90deg) scaleY(-1); transform-origin: center"
+        style={
+          Object {
+            "filter": "url(#blur)",
+            "transform": "rotate(-90deg) scaleY(-1)",
+            "transformOrigin": "center",
+          }
+        }
       />
     </svg>
     <div
@@ -44,6 +50,7 @@ exports[`ArtistQuestionScreen should render correctly 1`] = `
       <div
         className="wrong"
       />
+      ß
       <div
         className="wrong"
       />
