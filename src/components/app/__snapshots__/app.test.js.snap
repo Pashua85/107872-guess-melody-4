@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should render correctly 1`] = `
+exports[`App render should render correctly 1`] = `
 <section
   className="welcome"
 >
@@ -14,16 +14,21 @@ exports[`App should render correctly 1`] = `
       width="186"
     />
   </div>
-  <button
-    className="welcome__button"
+  <a
+    href="/dev-artist"
     onClick={[Function]}
   >
-    <span
-      className="visually-hidden"
+    <button
+      className="welcome__button"
+      onClick={[Function]}
     >
-      Начать игру
-    </span>
-  </button>
+      <span
+        className="visually-hidden"
+      >
+        Начать игру
+      </span>
+    </button>
+  </a>
   <h2
     className="welcome__rules-title"
   >

@@ -8,7 +8,7 @@ Enzyme.configure({
 });
 
 describe(`WelcomeScreen`, () => {
-  it(`shuld call onStartClick when start button is clicked`, () => {
+  it(`should call onStartClick when start button is clicked`, () => {
     const onStartClickFn = jest.fn();
     const component = shallow(<WelcomeScreen errorAmount={2} onStartClick={onStartClickFn} />);
 
