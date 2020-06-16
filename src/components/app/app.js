@@ -10,6 +10,7 @@ class App extends React.PureComponent {
     super(props);
     this.renderGameScreen = this.renderGameScreen.bind(this);
     this.handleStartClick = this.handleStartClick.bind(this);
+    this.increaseStep = this.increaseStep.bind(this);
 
     this.state = {
       step: -1
@@ -17,15 +18,24 @@ class App extends React.PureComponent {
   }
 
   handleStartClick() {
+    this.increaseStep();
+  }
+
+  increaseStep() {
+    this.setState((prevState) => ({
+      step: prevState.step + 1
+    }));
+  }
+
+  rebootStep() {
     this.setState({
-      step: 0
+      step: -1
     });
   }
 
   renderGameScreen() {
     const {errorAmount, questions} = this.props;
     const {step} = this.state;
-    const question = questions[step];
 
     if (step === -1 || step >= questions.length) {
       return (

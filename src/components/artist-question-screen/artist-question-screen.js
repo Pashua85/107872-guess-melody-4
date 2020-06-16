@@ -48,7 +48,13 @@ const ArtistQuestionScreen = (props) => {
           {
             answers.map((answer) => (
               <div className="artist" key={answer.artist}>
-                <input className="artist__input visually-hidden" type="radio" name="answer" value={answer.artist} id={answer.artist} />
+                <input
+                  className="artist__input visually-hidden"
+                  type="radio"
+                  name="answer"
+                  value={answer.artist}
+                  id={answer.artist}
+                />
                 <label className="artist__name" htmlFor={answer.artist}>
                   <img className="artist__picture" src={answer.picture} alt={answer.artist} />
                   {answer.artist}
