@@ -1,6 +1,6 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import WelcomeScreen from '../welcome-screen/welcome-screen';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
@@ -10,7 +10,10 @@ class App extends React.PureComponent {
     super(props);
     this.renderGameScreen = this.renderGameScreen.bind(this);
     this.handleStartClick = this.handleStartClick.bind(this);
+    this.handleContinueClick = this.handleContinueClick.bind(this);
+    this.handleFinalClick = this.handleFinalClick.bind(this);
     this.increaseStep = this.increaseStep.bind(this);
+    this.rebootStep = this.rebootStep.bind(this);
 
     this.state = {
       step: -1
@@ -19,6 +22,14 @@ class App extends React.PureComponent {
 
   handleStartClick() {
     this.increaseStep();
+  }
+
+  handleContinueClick() {
+    this.increaseStep();
+  }
+
+  handleFinalClick() {
+    this.rebootStep();
   }
 
   increaseStep() {
@@ -39,39 +50,52 @@ class App extends React.PureComponent {
 
     if (step === -1 || step >= questions.length) {
       return (
-        <Route exact path='/'>
-          <WelcomeScreen
-            errorAmount={errorAmount}
-            onStartClick={this.handleStartClick}
-          />
-        </Route>
+        <WelcomeScreen
+          errorAmount={errorAmount}
+          onStartClick={this.handleStartClick}
+        />
       );
     } else if (step === 0) {
       return (
-        <Redirect to='/dev-artist' />
+        <ArtistQuestionScreen
+          question={questions[0]}
+          onAnswerSelect={this.handleContinueClick}
+        />
       );
     } else if (step === 1) {
       return (
-        <Redirect to='/dev-genre' />
+        <GenreQuestionScreen
+          question={questions[1]}
+          onAnswerClick={this.handleFinalClick}
+        />
       );
     }
     return null;
   }
 
   render() {
-    const {questions} = this.props;
+    const {errorAmount, questions} = this.props;
 
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path='/'>
-            {this.renderGameScreen}
+            <WelcomeScreen
+              errorAmount={errorAmount}
+              onStartClick={this.handleStartClick}
+            />
           </Route>
           <Route exact path='/dev-artist'>
-            <ArtistQuestionScreen question={questions[0]} />
+            <ArtistQuestionScreen
+              question={questions[0]}
+              onAnswerSelect={this.handleContinueClick}
+            />
           </Route>
           <Route exact path='/dev-genre'>
-            <GenreQuestionScreen question={questions[1]} />
+            <GenreQuestionScreen
+              question={questions[1]}
+              onAnswerClick={this.handleFinalClick}
+            />
           </Route>
         </Switch>
       </BrowserRouter>

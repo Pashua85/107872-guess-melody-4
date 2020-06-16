@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 const ArtistQuestionScreen = (props) => {
-  const {questionText, answers} = props.question;
+  const {questionText, answers, type} = props.question;
+  const {onAnswerSelect} = props;
 
   return (
     <section className="game game--artist">
@@ -48,17 +50,21 @@ const ArtistQuestionScreen = (props) => {
           {
             answers.map((answer) => (
               <div className="artist" key={answer.artist}>
-                <input
-                  className="artist__input visually-hidden"
-                  type="radio"
-                  name="answer"
-                  value={answer.artist}
-                  id={answer.artist}
-                />
-                <label className="artist__name" htmlFor={answer.artist}>
-                  <img className="artist__picture" src={answer.picture} alt={answer.artist} />
-                  {answer.artist}
-                </label>
+                <Link to="/dev-genre" onClick={() => {
+                  onAnswerSelect(type, answer.artist);
+                }}>
+                  <input
+                    className="artist__input visually-hidden"
+                    type="radio"
+                    name="answer"
+                    value={answer.artist}
+                    id={answer.artist}
+                  />
+                  <label className="artist__name" htmlFor={answer.artist}>
+                    <img className="artist__picture" src={answer.picture} alt={answer.artist} />
+                    {answer.artist}
+                  </label>
+                ß</Link>
               </div>
             ))
           }
@@ -82,7 +88,8 @@ ArtistQuestionScreen.propTypes = {
           artist: PropTypes.string
         })
     )
-  }).isRequired
+  }).isRequired,
+  onAnswerSelect: PropTypes.func.isRequired
 };
 
 export default ArtistQuestionScreen;

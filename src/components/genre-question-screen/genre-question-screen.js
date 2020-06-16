@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 const GenreQuestionScreen = (props) => {
   const {questionText, answers} = props.question;
+  const {onAnswerClick} = props;
 
   return (
     <section className="game game--genre">
@@ -50,7 +52,14 @@ const GenreQuestionScreen = (props) => {
               </div>
             ))
           }
-          <button className="game__submit button" type="submit">Ответить</button>
+          <Link to="/" onClick={onAnswerClick} >
+            <button
+              className="game__submit button"
+              type="button"
+            >
+              Ответить
+            </button>
+          </Link>
         </form>
       </section>
     </section>
@@ -68,7 +77,8 @@ GenreQuestionScreen.propTypes = {
           genre: PropTypes.string
         })
     )
-  }).isRequired
+  }).isRequired,
+  onAnswerClick: PropTypes.func.isRequired
 };
 
 export default GenreQuestionScreen;
