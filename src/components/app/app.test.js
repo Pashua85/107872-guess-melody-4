@@ -41,5 +41,4 @@ describe(`App`, () => {
       expect(component.state().step).toBe(-1);
     });
   });
-
 });

@@ -8,7 +8,6 @@ import GenreQuestionScreen from '../genre-question-screen/genre-question-screen'
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.renderGameScreen = this.renderGameScreen.bind(this);
     this.handleStartClick = this.handleStartClick.bind(this);
     this.handleContinueClick = this.handleContinueClick.bind(this);
     this.handleFinalClick = this.handleFinalClick.bind(this);
@@ -46,35 +45,6 @@ class App extends React.PureComponent {
     });
   }
 
-  renderGameScreen() {
-    const {errorAmount, questions} = this.props;
-    const {step} = this.state;
-
-    if (step === -1 || step >= questions.length) {
-      return (
-        <WelcomeScreen
-          errorAmount={errorAmount}
-          onStartClick={this.handleStartClick}
-        />
-      );
-    } else if (step === 0) {
-      return (
-        <ArtistQuestionScreen
-          question={questions[0]}
-          onAnswerSelect={this.handleContinueClick}
-        />
-      );
-    } else if (step === 1) {
-      return (
-        <GenreQuestionScreen
-          question={questions[1]}
-          onAnswerClick={this.handleFinalClick}
-        />
-      );
-    }
-    return null;
-  }
-
   render() {
     const {errorAmount, questions} = this.props;
 
@@ -90,7 +60,7 @@ class App extends React.PureComponent {
           <Route exact path='/dev-artist'>
             <ArtistQuestionScreen
               question={questions[0]}
-              onAnswerSelect={this.handleContinueClick}
+              onAnswerClick={this.handleContinueClick}
             />
           </Route>
           <Route exact path='/dev-genre'>

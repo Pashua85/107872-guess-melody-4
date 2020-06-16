@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 const ArtistQuestionScreen = (props) => {
   const {questionText, answers, type} = props.question;
-  const {onAnswerSelect} = props;
+  const {onAnswerClick} = props;
 
   return (
     <section className="game game--artist">
@@ -51,7 +51,7 @@ const ArtistQuestionScreen = (props) => {
             answers.map((answer) => (
               <div className="artist" key={answer.artist}>
                 <Link to="/dev-genre" onClick={() => {
-                  onAnswerSelect(type, answer.artist);
+                  onAnswerClick(type, answer.artist);
                 }}>
                   <input
                     className="artist__input visually-hidden"
@@ -89,7 +89,7 @@ ArtistQuestionScreen.propTypes = {
         })
     )
   }).isRequired,
-  onAnswerSelect: PropTypes.func.isRequired
+  onAnswerClick: PropTypes.func.isRequired
 };
 
 export default ArtistQuestionScreen;

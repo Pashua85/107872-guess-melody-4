@@ -5,14 +5,13 @@ import Adapter from 'enzyme-adapter-react-16';
 import GenreQuestionScreen from './genre-question-screen';
 import questions from '../../mocks/test-questions';
 
-
 Enzyme.configure({
   adapter: new Adapter()
 });
 
 describe(`GenreQuestionScreen`, () => {
   describe(`onAnswerClick`, () => {
-    test(`When user click answer-button with no checked answers,
+    test(`When user clicks answer-button with no checked answers,
       onAnswerClick should be called with "genre" and [false, false, false, false] as parameters`, () => {
       const onAnswerClick = jest.fn();
       const wrapper = mount(

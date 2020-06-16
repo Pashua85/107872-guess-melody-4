@@ -15,7 +15,7 @@ describe(`ArtistQuestionScreen`, () => {
         <MemoryRouter>
           <ArtistQuestionScreen
             question={questions[0]}
-            onAnswerSelect={() => {}}
+            onAnswerClick={() => {}}
           />
         </MemoryRouter>
     );
