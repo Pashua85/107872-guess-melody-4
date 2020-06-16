@@ -50,7 +50,6 @@ exports[`ArtistQuestionScreen should render correctly 1`] = `
       <div
         className="wrong"
       />
-      ß
       <div
         className="wrong"
       />
@@ -62,7 +61,7 @@ exports[`ArtistQuestionScreen should render correctly 1`] = `
     <h2
       className="game__title"
     >
-      Кто исполняет эту песню?
+      Кто исполняет эту композицию?
     </h2>
     <div
       className="game__track"
@@ -89,21 +88,21 @@ exports[`ArtistQuestionScreen should render correctly 1`] = `
       >
         <input
           className="artist__input visually-hidden"
-          id="answer-1"
+          id="Charles Mingus"
           name="answer"
           type="radio"
-          value="artist-1"
+          value="Charles Mingus"
         />
         <label
           className="artist__name"
-          htmlFor="answer-1"
+          htmlFor="Charles Mingus"
         >
           <img
-            alt="Пелагея"
+            alt="Charles Mingus"
             className="artist__picture"
-            src="http://placehold.it/134x134"
+            src="someTestSrc-5"
           />
-          Пелагея
+          Charles Mingus
         </label>
       </div>
       <div
@@ -111,21 +110,21 @@ exports[`ArtistQuestionScreen should render correctly 1`] = `
       >
         <input
           className="artist__input visually-hidden"
-          id="answer-2"
+          id="Miles Davis"
           name="answer"
           type="radio"
-          value="artist-2"
+          value="Miles Davis"
         />
         <label
           className="artist__name"
-          htmlFor="answer-2"
+          htmlFor="Miles Davis"
         >
           <img
-            alt="Пелагея"
+            alt="Miles Davis"
             className="artist__picture"
-            src="http://placehold.it/134x134"
+            src="someTestSrc-6"
           />
-          Краснознаменная дивизия имени моей бабушки
+          Miles Davis
         </label>
       </div>
       <div
@@ -133,21 +132,21 @@ exports[`ArtistQuestionScreen should render correctly 1`] = `
       >
         <input
           className="artist__input visually-hidden"
-          id="answer-3"
+          id="Thad Jones"
           name="answer"
           type="radio"
-          value="artist-3"
+          value="Thad Jones"
         />
         <label
           className="artist__name"
-          htmlFor="answer-3"
+          htmlFor="Thad Jones"
         >
           <img
-            alt="Пелагея"
+            alt="Thad Jones"
             className="artist__picture"
-            src="http://placehold.it/134x134"
+            src="someTestSrc-7"
           />
-          Lorde
+          Thad Jones
         </label>
       </div>
     </form>
