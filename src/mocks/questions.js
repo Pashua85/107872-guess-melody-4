@@ -3,7 +3,7 @@ const AVATAR_URL = `https://api.adorable.io/avatars/17`;
 export default [
   {
     type: `genre`,
-    question: `Выберите музыку барокко`,
+    questionText: `Выберите музыку барокко`,
     genre: `baroque`,
     answers: [{
       src: `someSrc-0`,
@@ -21,7 +21,7 @@ export default [
   },
   {
     type: `artist`,
-    question: `Кто исполняет эту песню?`,
+    questionText: `Кто исполняет эту песню?`,
     song: {
       artist: `Gregory Porter`,
       src: `someSrc-4`
