@@ -6,7 +6,7 @@ import questions from '../../mocks/test-questions';
 describe(`GenreQuestionScreen`, () => {
   it(`should render correctly`, () => {
     const tree = renderer
-      .create(<GenreQuestionScreen question={questions[0]}/>)
+      .create(<GenreQuestionScreen question={questions[1]}/>)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
