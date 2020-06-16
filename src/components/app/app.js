@@ -18,7 +18,7 @@ const App = (props) => {
           <ArtistQuestionScreen question={questions[1]} />
         </Route>
         <Route exact path='/dev-genre'>
-          <GenreQuestionScreen />
+          <GenreQuestionScreen question={questions[0]} />
         </Route>
       </Switch>
     </BrowserRouter>

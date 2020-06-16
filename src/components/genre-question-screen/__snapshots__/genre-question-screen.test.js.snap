@@ -61,7 +61,7 @@ exports[`GenreQuestionScreen should render correctly 1`] = `
     <h2
       className="game__title"
     >
-      Выберите инди-рок треки
+      Выберите музыку диксиленд
     </h2>
     <form
       className="game__tracks"
@@ -83,14 +83,14 @@ exports[`GenreQuestionScreen should render correctly 1`] = `
         >
           <input
             className="game__input visually-hidden"
-            id="answer-1"
+            id="bebop"
             name="answer"
             type="checkbox"
-            value="answer-1"
+            value="bebop"
           />
           <label
             className="game__check"
-            htmlFor="answer-1"
+            htmlFor="bebop"
           >
             Отметить
           </label>
@@ -113,44 +113,14 @@ exports[`GenreQuestionScreen should render correctly 1`] = `
         >
           <input
             className="game__input visually-hidden"
-            id="answer-2"
+            id="dixieland"
             name="answer"
             type="checkbox"
-            value="answer-1"
+            value="dixieland"
           />
           <label
             className="game__check"
-            htmlFor="answer-2"
-          >
-            Отметить
-          </label>
-        </div>
-      </div>
-      <div
-        className="track"
-      >
-        <button
-          className="track__button track__button--pause"
-          type="button"
-        />
-        <div
-          className="track__status"
-        >
-          <audio />
-        </div>
-        <div
-          className="game__answer"
-        >
-          <input
-            className="game__input visually-hidden"
-            id="answer-3"
-            name="answer"
-            type="checkbox"
-            value="answer-1"
-          />
-          <label
-            className="game__check"
-            htmlFor="answer-3"
+            htmlFor="dixieland"
           >
             Отметить
           </label>
@@ -173,14 +143,44 @@ exports[`GenreQuestionScreen should render correctly 1`] = `
         >
           <input
             className="game__input visually-hidden"
-            id="answer-4"
+            id="free-jazz"
             name="answer"
             type="checkbox"
-            value="answer-1"
+            value="free-jazz"
           />
           <label
             className="game__check"
-            htmlFor="answer-4"
+            htmlFor="free-jazz"
+          >
+            Отметить
+          </label>
+        </div>
+      </div>
+      <div
+        className="track"
+      >
+        <button
+          className="track__button track__button--play"
+          type="button"
+        />
+        <div
+          className="track__status"
+        >
+          <audio />
+        </div>
+        <div
+          className="game__answer"
+        >
+          <input
+            className="game__input visually-hidden"
+            id="funk"
+            name="answer"
+            type="checkbox"
+            value="funk"
+          />
+          <label
+            className="game__check"
+            htmlFor="funk"
           >
             Отметить
           </label>
