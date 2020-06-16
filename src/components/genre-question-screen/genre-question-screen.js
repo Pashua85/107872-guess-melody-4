@@ -5,14 +5,30 @@ import {Link} from 'react-router-dom';
 class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.handleInputChange = this.handleInputChange.bind(this);
 
     this.state = {
-      isAnswersChecked: [false, false, false, false]
+      checkedAnswers: [false, false, false, false]
     };
   }
 
+  handleInputChange(index) {
+    this.setState((prevState) => {
+      const newAnswers = prevState.checkedAnswers.map((answer, i) => {
+        if (i === index) {
+          return !answer;
+        } else {
+          return answer;
+        }
+      });
+      return ({
+        checkedAnswers: newAnswers
+      });
+    });
+  }
+
   render() {
-    const {questionText, answers} = this.props.question;
+    const {questionText, answers, type} = this.props.question;
     const {onAnswerClick} = this.props;
 
     return (
@@ -55,13 +71,27 @@ class GenreQuestionScreen extends React.PureComponent {
                     <audio></audio>
                   </div>
                   <div className="game__answer">
-                    <input className="game__input visually-hidden" type="checkbox" name="answer" value={answer.genre} id={answer.genre} />
+                    <input
+                      className="game__input visually-hidden"
+                      type="checkbox"
+                      name="answer"
+                      value={answer.genre}
+                      id={answer.genre}
+                      onChange={() => {
+                        this.handleInputChange(index);
+                      }}
+                    />
                     <label className="game__check" htmlFor={answer.genre}>Отметить</label>
                   </div>
                 </div>
               ))
             }
-            <Link to="/" onClick={onAnswerClick} >
+            <Link
+              to="/"
+              onClick={() => {
+                onAnswerClick(type, this.state.checkedAnswers);
+              }}
+            >
               <button
                 className="game__submit button"
                 type="button"

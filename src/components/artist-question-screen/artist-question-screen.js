@@ -64,7 +64,7 @@ const ArtistQuestionScreen = (props) => {
                     <img className="artist__picture" src={answer.picture} alt={answer.artist} />
                     {answer.artist}
                   </label>
-                ß</Link>
+                </Link>
               </div>
             ))
           }

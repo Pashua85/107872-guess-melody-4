@@ -24,11 +24,14 @@ class App extends React.PureComponent {
     this.increaseStep();
   }
 
-  handleContinueClick() {
+  handleContinueClick(question, answer) {
+    console.log(question, answer);
     this.increaseStep();
   }
 
-  handleFinalClick() {
+  handleFinalClick(question, checkedAnswers) {
+    console.log(`question - ${question}`);
+    console.log(`answers - ${checkedAnswers}`);
     this.rebootStep();
   }
 
