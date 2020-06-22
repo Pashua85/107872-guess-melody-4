@@ -11,13 +11,11 @@ Enzyme.configure({
 
 describe(`App`, () => {
 
-  describe(`render`, () => {
-    it(`should render correctly`, () => {
-      const tree = renderer
-        .create(<App errorAmount={1} questions={questions} />)
-        .toJSON();
-      expect(tree).toMatchSnapshot();
-    });
+  it(`should render correctly`, () => {
+    const tree = renderer
+      .create(<App errorAmount={1} questions={questions} />)
+      .toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   describe(`increaseStep`, () => {
