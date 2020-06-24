@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 class AudioPlayer extends React.PureComponent {
   constructor(props) {
     super(props);
+    this.getButtonClass = this.getButtonClass.bind(this);
+    this.handleTrackClick = this.handleTrackClick.bind(this);
 
     this.state = {
       isPlaying: false,
@@ -11,14 +13,48 @@ class AudioPlayer extends React.PureComponent {
     };
   }
 
+  handleTrackClick(src) {
+    if (!this.state.isPlaying) {
+      this.setState({
+        isPlaying: true,
+        playingTrack: src
+      });
+    } else if (this.state.playingTrack === src) {
+      this.setState({
+        isPlaying: false,
+        playingTrack: null,
+      });
+    } else {
+      this.setState({
+        playingTrack: src
+      });
+    }
+  }
+
+  getButtonClass(src) {
+    if (this.state.playingTrack === src) {
+      return `track__button track__button--pause`;
+    } else {
+      return `track__button track__button--play`;
+    }
+  }
+
   render() {
     const {tracks, type, onInputChange} = this.props;
+
     return (
       <React.Fragment>
         {
           tracks.map((track, index) => (
             <div className="track" key={track.src}>
-              <button className="track__button track__button--play" type="button"></button>
+              <button
+                className={this.getButtonClass(track.src)}
+                type="button"
+                onClick={() => {
+                  this.handleTrackClick(track.src);
+                }}
+              >
+              </button>
               <div className="track__status">
                 <audio></audio>
               </div>
