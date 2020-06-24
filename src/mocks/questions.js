@@ -35,7 +35,7 @@ export default [
       src: `audio/franz_liszt_hungarian_rhapsody_no_11.mp3`,
       genre: `romantic`
     }, {
-      src: `audio/philip_glass_string_quartet_no_2_company_movement_2`,
+      src: `audio/philip_glass_string_quartet_no_2_company_movement_2.mp3`,
       genre: `minimalism`
     }]
   }

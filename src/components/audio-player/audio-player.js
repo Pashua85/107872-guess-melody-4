@@ -6,6 +6,7 @@ class AudioPlayer extends React.PureComponent {
     super(props);
     this.getButtonClass = this.getButtonClass.bind(this);
     this.handleTrackClick = this.handleTrackClick.bind(this);
+    this.buttonRefs = [];
 
     this.state = {
       isPlaying: false,
@@ -13,18 +14,24 @@ class AudioPlayer extends React.PureComponent {
     };
   }
 
-  handleTrackClick(src) {
+  handleTrackClick(src, index) {
     if (!this.state.isPlaying) {
+      this.buttonRefs[index].play();
       this.setState({
         isPlaying: true,
         playingTrack: src
       });
     } else if (this.state.playingTrack === src) {
+      this.buttonRefs[index].pause();
       this.setState({
         isPlaying: false,
         playingTrack: null,
       });
     } else {
+      this.buttonRefs.forEach((ref) => {
+        ref.pause();
+      });
+      this.buttonRefs[index].play();
       this.setState({
         playingTrack: src
       });
@@ -51,12 +58,18 @@ class AudioPlayer extends React.PureComponent {
                 className={this.getButtonClass(track.src)}
                 type="button"
                 onClick={() => {
-                  this.handleTrackClick(track.src);
+                  this.handleTrackClick(track.src, index);
                 }}
               >
               </button>
               <div className="track__status">
-                <audio></audio>
+                <audio
+                  src={track.src}
+                  ref={(btnRef) => {
+                    this.buttonRefs[index] = btnRef;
+                  }}
+                >
+                </audio>
               </div>
               {
                 type === `genre` &&
