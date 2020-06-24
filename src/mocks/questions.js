@@ -4,10 +4,12 @@ export default [
   {
     type: `artist`,
     questionText: `Кто исполняет эту песню?`,
-    song: {
-      artist: `Gregory Porter`,
-      src: `someSrc-4`
-    },
+    tracks: [
+      {
+        artist: `Gregory Porter`,
+        src: `audio/gregory_porter_ hey_laura.mp3`
+      }
+    ],
     answers: [{
       picture: `${AVATAR_URL}/${Math.random()}`,
       artist: `Kurt Elling`
@@ -23,17 +25,17 @@ export default [
     type: `genre`,
     questionText: `Выберите музыку барокко`,
     genre: `baroque`,
-    answers: [{
-      src: `someSrc-0`,
+    tracks: [{
+      src: `audio/handel_concerto_grosso_in_g_minor_allegro.mp3`,
       genre: `baroque`
     }, {
-      src: `someSrc-1`,
+      src: `audio/haydn_symphony_no_6_finale.mp3`,
       genre: `classical`
     }, {
-      src: `someSrc-2`,
+      src: `audio/franz_liszt_hungarian_rhapsody_no_11.mp3`,
       genre: `romantic`
     }, {
-      src: `someSrc-3`,
+      src: `audio/philip_glass_string_quartet_no_2_company_movement_2.mp3`,
       genre: `minimalism`
     }]
   }

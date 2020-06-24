@@ -2,10 +2,12 @@ export default [
   {
     type: `artist`,
     questionText: `Кто исполняет эту композицию?`,
-    song: {
-      artist: `Miles Davis`,
-      src: `someTestSrc-4`
-    },
+    tracks: [
+      {
+        artist: `Miles Davis`,
+        src: `someTestSrc-4`
+      }
+    ],
     answers: [{
       picture: `someTestSrc-5`,
       artist: `Charles Mingus`
@@ -21,7 +23,7 @@ export default [
     type: `genre`,
     questionText: `Выберите музыку диксиленд`,
     genre: `dixieland`,
-    answers: [{
+    tracks: [{
       src: `someTestSrc-0`,
       genre: `bebop`
     }, {

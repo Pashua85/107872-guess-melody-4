@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AudioPlayer should render correctly with 4 tracks 1`] = `ShallowWrapper {}`;
+
+exports[`AudioPlayer should render correctly with one track 1`] = `ShallowWrapper {}`;
