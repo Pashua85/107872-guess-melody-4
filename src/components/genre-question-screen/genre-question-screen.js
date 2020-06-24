@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import AudioPlayer from '../audio-player/audio-player';
 
 class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
@@ -28,7 +29,7 @@ class GenreQuestionScreen extends React.PureComponent {
   }
 
   render() {
-    const {questionText, answers, type} = this.props.question;
+    const {questionText, tracks, type} = this.props.question;
     const {onAnswerClick} = this.props;
 
     return (
@@ -63,29 +64,7 @@ class GenreQuestionScreen extends React.PureComponent {
         <section className="game__screen">
           <h2 className="game__title">{questionText}</h2>
           <form className="game__tracks">
-            {
-              answers.map((answer, index) => (
-                <div className="track" key={answer.genre}>
-                  <button className="track__button track__button--play" type="button"></button>
-                  <div className="track__status">
-                    <audio></audio>
-                  </div>
-                  <div className="game__answer">
-                    <input
-                      className="game__input visually-hidden"
-                      type="checkbox"
-                      name="answer"
-                      value={answer.genre}
-                      id={answer.genre}
-                      onChange={() => {
-                        this.handleInputChange(index);
-                      }}
-                    />
-                    <label className="game__check" htmlFor={answer.genre}>Отметить</label>
-                  </div>
-                </div>
-              ))
-            }
+            <AudioPlayer tracks={tracks} onInputChange={this.handleInputChange} type={type} />
             <Link
               to="/"
               onClick={() => {
@@ -112,12 +91,12 @@ GenreQuestionScreen.propTypes = {
     type: PropTypes.string,
     questionText: PropTypes.string,
     genre: PropTypes.string,
-    answers: PropTypes.arrayOf(
+    tracks: PropTypes.arrayOf(
         PropTypes.shape({
-          src: PropTypes.string,
-          genre: PropTypes.string
+          src: PropTypes.string.isRequired,
+          genre: PropTypes.string.isRequired
         })
-    )
+    ),
   }).isRequired,
   onAnswerClick: PropTypes.func.isRequired
 };

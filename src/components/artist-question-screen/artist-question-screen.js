@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import AudioPlayer from '../audio-player/audio-player';
 
 const ArtistQuestionScreen = (props) => {
-  const {questionText, answers, type} = props.question;
+  const {questionText, answers, type, tracks} = props.question;
   const {onAnswerClick} = props;
 
   return (
@@ -38,12 +39,9 @@ const ArtistQuestionScreen = (props) => {
       <section className="game__screen">
         <h2 className="game__title">{questionText}</h2>
         <div className="game__track">
-          <div className="track">
-            <button className="track__button track__button--play" type="button"></button>
-            <div className="track__status">
-              <audio></audio>
-            </div>
-          </div>
+
+          <AudioPlayer tracks={tracks} type={type} />
+
         </div>
 
         <form className="game__artist">
@@ -78,10 +76,12 @@ ArtistQuestionScreen.propTypes = {
   question: PropTypes.shape({
     type: PropTypes.string,
     questionText: PropTypes.string,
-    song: PropTypes.shape({
-      artist: PropTypes.string,
-      src: PropTypes.string
-    }),
+    tracks: PropTypes.arrayOf(
+        PropTypes.shape({
+          src: PropTypes.string.isRequired,
+          artist: PropTypes.string.isRequired,
+        })
+    ),
     answers: PropTypes.arrayOf(
         PropTypes.shape({
           picture: PropTypes.string,
