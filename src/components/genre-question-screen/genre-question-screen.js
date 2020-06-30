@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {incStepAction} from '../../reducer';
 import AudioPlayer from '../audio-player/audio-player';
+import { connect } from 'react-redux';
 
 class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
@@ -85,7 +87,6 @@ class GenreQuestionScreen extends React.PureComponent {
   }
 }
 
-
 GenreQuestionScreen.propTypes = {
   question: PropTypes.shape({
     type: PropTypes.string,
@@ -101,4 +102,14 @@ GenreQuestionScreen.propTypes = {
   onAnswerClick: PropTypes.func.isRequired
 };
 
-export default GenreQuestionScreen;
+const mapStateToProps = (state) => ({
+  question: state.questions[state.step]
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onAnswerClick: () => (
+    dispatch(incStepAction())
+  )
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GenreQuestionScreen);
