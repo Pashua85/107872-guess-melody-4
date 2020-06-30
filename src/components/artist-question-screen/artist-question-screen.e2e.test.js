@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import {MemoryRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
-import ArtistQuestionScreen from './artist-question-screen';
+import {ArtistQuestionScreen} from './artist-question-screen';
 import questions from '../../mocks/test-questions';
 
 Enzyme.configure({

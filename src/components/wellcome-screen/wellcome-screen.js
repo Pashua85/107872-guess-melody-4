@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {incStepAction} from '../../reducer';
 
-const WelcomeScreen = (props) => {
+const WellcomeScreen = (props) => {
   const {mistakesLimit, onStartClick} = props;
   return <section className="welcome">
     <div className="welcome__logo">
@@ -28,7 +28,7 @@ const WelcomeScreen = (props) => {
   </section>;
 };
 
-WelcomeScreen.propTypes = {
+WellcomeScreen.propTypes = {
   mistakesLimit: PropTypes.number.isRequired,
   onStartClick: PropTypes.func.isRequired
 };
@@ -43,5 +43,5 @@ const mapDispatchToProps = (dispatch) => ({
   )
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen);
-export {WelcomeScreen};
+export default connect(mapStateToProps, mapDispatchToProps)(WellcomeScreen);
+export {WellcomeScreen};

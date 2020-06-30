@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {incStepAction} from '../../reducer';
 import AudioPlayer from '../audio-player/audio-player';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
@@ -113,3 +113,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GenreQuestionScreen);
+export {GenreQuestionScreen};
