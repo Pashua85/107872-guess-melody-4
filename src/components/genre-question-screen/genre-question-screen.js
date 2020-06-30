@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {incStepAction} from '../../reducer';
-import AudioPlayer from '../audio-player/audio-player';
 import {connect} from 'react-redux';
+import {incStepAction, incMistakesAction} from '../../reducer';
+import {checkAnswers} from '../../helpers';
+import AudioPlayer from '../audio-player/audio-player';
+
 
 class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
@@ -107,9 +109,12 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onAnswerClick: () => (
-    dispatch(incStepAction())
-  )
+  onAnswerClick: (type, answer) => {
+    if (!checkAnswers(type, answer)) {
+      dispatch(incMistakesAction());
+    }
+    dispatch(incStepAction());
+  }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GenreQuestionScreen);

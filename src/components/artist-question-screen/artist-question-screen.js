@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import AudioPlayer from '../audio-player/audio-player';
-import {incStepAction} from '../../reducer';
+import {incStepAction, incMistakesAction} from '../../reducer';
+import {checkAnswers} from '../../helpers';
 
 const ArtistQuestionScreen = (props) => {
   const {questionText, answers, type, tracks} = props.question;
   const {onAnswerClick} = props;
-  
+
   return (
     <section className="game game--artist">
       <header className="game__header">
@@ -102,9 +103,12 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => (
   {
-    onAnswerClick: () => (
-      dispatch(incStepAction())
-    )
+    onAnswerClick: (type, answer) => {
+      if (!checkAnswers(type, answer)) {
+        dispatch(incMistakesAction());
+      }
+      dispatch(incStepAction());
+    }
   }
 );
 
