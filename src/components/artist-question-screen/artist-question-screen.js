@@ -8,7 +8,7 @@ import {incStepAction} from '../../reducer';
 const ArtistQuestionScreen = (props) => {
   const {questionText, answers, type, tracks} = props.question;
   const {onAnswerClick} = props;
-
+  
   return (
     <section className="game game--artist">
       <header className="game__header">
