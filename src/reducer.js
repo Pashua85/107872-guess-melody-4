@@ -51,6 +51,6 @@ function stepReducer(state, action) {
 export {
   initialState,
   incMistakesAction,
-  incStepAction
+  incStepAction,
   reducer
 };

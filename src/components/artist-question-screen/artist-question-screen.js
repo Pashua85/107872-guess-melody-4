@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import AudioPlayer from '../audio-player/audio-player';
+import {incStepAction} from '../../reducer';
 
 const ArtistQuestionScreen = (props) => {
   const {questionText, answers, type, tracks} = props.question;
@@ -92,4 +94,18 @@ ArtistQuestionScreen.propTypes = {
   onAnswerClick: PropTypes.func.isRequired
 };
 
-export default ArtistQuestionScreen;
+const mapStateToProps = (state) => (
+  {
+    question: state.questions[0]
+  }
+);
+
+const mapDispatchToProps = (dispatch) => (
+  {
+    onAnswerClick: () => (
+      dispatch(incStepAction())
+    )
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArtistQuestionScreen);
