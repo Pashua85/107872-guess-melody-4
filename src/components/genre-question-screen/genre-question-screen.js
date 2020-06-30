@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {incStepAction, incMistakesAction} from '../../reducer';
 import {checkAnswers} from '../../helpers';
 import AudioPlayer from '../audio-player/audio-player';
+import GameMistakes from '../game-mistakes/game-mistakes';
 
 
 class GenreQuestionScreen extends React.PureComponent {
@@ -58,11 +59,7 @@ class GenreQuestionScreen extends React.PureComponent {
             />
           </svg>
 
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
+          <GameMistakes />
         </header>
 
         <section className="game__screen">
@@ -105,7 +102,7 @@ GenreQuestionScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  question: state.questions[state.step]
+  question: state.questions[1]
 });
 
 const mapDispatchToProps = (dispatch) => ({

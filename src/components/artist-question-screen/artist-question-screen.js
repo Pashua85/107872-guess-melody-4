@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import AudioPlayer from '../audio-player/audio-player';
+import GameMistakes from '../game-mistakes/game-mistakes';
 import {incStepAction, incMistakesAction} from '../../reducer';
 import {checkAnswers} from '../../helpers';
 
@@ -32,11 +33,7 @@ const ArtistQuestionScreen = (props) => {
           />
         </svg>
 
-        <div className="game__mistakes">
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-        </div>
+        <GameMistakes />
       </header>
 
       <section className="game__screen">
