@@ -13,7 +13,7 @@ const ArtistQuestionScreen = (props) => {
 
   if (mistakes > mistakesLimit) {
     return (
-      <Redirect to="/" />
+      <Redirect to="/dev-fail" />
     );
   } else if (step > 0) {
     return (

@@ -39,7 +39,7 @@ class GenreQuestionScreen extends React.PureComponent {
 
     if (mistakes > mistakesLimit) {
       return (
-        <Redirect to="/" />
+        <Redirect to="/dev-fail" />
       );
     } else if (step > 1) {
       return <Redirect to="/dev-result" />;
