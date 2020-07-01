@@ -3,6 +3,7 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import WellcomeScreen from '../wellcome-screen/wellcome-screen';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
+import ResultScreen from '../result-screen/result-screen';
 
 const App = () => (
   <BrowserRouter>
@@ -15,6 +16,9 @@ const App = () => (
       </Route>
       <Route exact path='/dev-genre'>
         <GenreQuestionScreen />
+      </Route>
+      <Route exact path='/dev-result'>
+        <ResultScreen />
       </Route>
     </Switch>
   </BrowserRouter>
