@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WellcomeScreen should render correctly with 2 errors 1`] = `ShallowWrapper {}`;
+
+exports[`WellcomeScreen should render correctly with 3 errors 1`] = `ShallowWrapper {}`;

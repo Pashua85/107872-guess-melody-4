@@ -1,7 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {incStepAction, incMistakesAction} from '../../action-creators/action-creators';
+import {checkAnswers} from '../../helpers';
 import AudioPlayer from '../audio-player/audio-player';
+import GameMistakes from '../game-mistakes/game-mistakes';
 
 class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
@@ -30,7 +34,15 @@ class GenreQuestionScreen extends React.PureComponent {
 
   render() {
     const {questionText, tracks, type} = this.props.question;
-    const {onAnswerClick} = this.props;
+    const {onAnswerClick, mistakes, mistakesLimit, step} = this.props;
+
+    if (mistakes > mistakesLimit) {
+      return (
+        <Redirect to="/dev-fail" />
+      );
+    } else if (step > 1) {
+      return <Redirect to="/dev-result" />;
+    }
 
     return (
       <section className="game game--genre">
@@ -54,37 +66,30 @@ class GenreQuestionScreen extends React.PureComponent {
             />
           </svg>
 
-          <div className="game__mistakes">
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-            <div className="wrong"></div>
-          </div>
+          <GameMistakes />
         </header>
 
         <section className="game__screen">
           <h2 className="game__title">{questionText}</h2>
           <form className="game__tracks">
             <AudioPlayer tracks={tracks} onInputChange={this.handleInputChange} type={type} />
-            <Link
-              to="/"
+
+            <button
+              className="game__submit button"
+              type="button"
               onClick={() => {
                 onAnswerClick(type, this.state.checkedAnswers);
               }}
             >
-              <button
-                className="game__submit button"
-                type="button"
-              >
-                Ответить
-              </button>
-            </Link>
+              Ответить
+            </button>
+
           </form>
         </section>
       </section>
     );
   }
 }
-
 
 GenreQuestionScreen.propTypes = {
   question: PropTypes.shape({
@@ -98,7 +103,28 @@ GenreQuestionScreen.propTypes = {
         })
     ),
   }).isRequired,
-  onAnswerClick: PropTypes.func.isRequired
+  onAnswerClick: PropTypes.func.isRequired,
+  mistakes: PropTypes.number.isRequired,
+  mistakesLimit: PropTypes.number.isRequired,
+  step: PropTypes.number.isRequired
 };
 
-export default GenreQuestionScreen;
+const mapStateToProps = (state) => ({
+  question: state.questions[1],
+  mistakes: state.mistakes,
+  mistakesLimit: state.mistakesLimit,
+  step: state.step
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onAnswerClick: (type, answer) => {
+    if (!checkAnswers(type, answer)) {
+      dispatch(incMistakesAction());
+    } else {
+      dispatch(incStepAction());
+    }
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(GenreQuestionScreen);
+export {GenreQuestionScreen};

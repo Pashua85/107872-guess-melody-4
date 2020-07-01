@@ -1,0 +1,9 @@
+const INC_MISTAKES = `INC_MISTAKES`;
+const INC_STEP = `INC_STEP`;
+const RESTART_GAME = `RESTART_GAME`;
+
+export {
+  INC_MISTAKES,
+  INC_STEP,
+  RESTART_GAME
+};

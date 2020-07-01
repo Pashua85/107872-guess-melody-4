@@ -1,11 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import AudioPlayer from '../audio-player/audio-player';
+import GameMistakes from '../game-mistakes/game-mistakes';
+import {incStepAction, incMistakesAction} from '../../action-creators/action-creators';
+import {checkAnswers} from '../../helpers';
 
 const ArtistQuestionScreen = (props) => {
   const {questionText, answers, type, tracks} = props.question;
-  const {onAnswerClick} = props;
+  const {onAnswerClick, mistakes, mistakesLimit, step} = props;
+
+  if (mistakes > mistakesLimit) {
+    return (
+      <Redirect to="/dev-fail" />
+    );
+  } else if (step > 0) {
+    return (
+      <Redirect to="/dev-genre" />
+    );
+  }
 
   return (
     <section className="game game--artist">
@@ -29,11 +43,7 @@ const ArtistQuestionScreen = (props) => {
           />
         </svg>
 
-        <div className="game__mistakes">
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-          <div className="wrong"></div>
-        </div>
+        <GameMistakes />
       </header>
 
       <section className="game__screen">
@@ -48,21 +58,23 @@ const ArtistQuestionScreen = (props) => {
           {
             answers.map((answer) => (
               <div className="artist" key={answer.artist}>
-                <Link to="/dev-genre" onClick={() => {
-                  onAnswerClick(type, answer.artist);
-                }}>
-                  <input
-                    className="artist__input visually-hidden"
-                    type="radio"
-                    name="answer"
-                    value={answer.artist}
-                    id={answer.artist}
-                  />
-                  <label className="artist__name" htmlFor={answer.artist}>
-                    <img className="artist__picture" src={answer.picture} alt={answer.artist} />
-                    {answer.artist}
-                  </label>
-                </Link>
+                <input
+                  className="artist__input visually-hidden"
+                  type="radio"
+                  name="answer"
+                  value={answer.artist}
+                  id={answer.artist}
+                />
+                <label
+                  className="artist__name"
+                  htmlFor={answer.artist}
+                  onClick={() => {
+                    onAnswerClick(type, answer.artist);
+                  }}
+                >
+                  <img className="artist__picture" src={answer.picture} alt={answer.artist} />
+                  {answer.artist}
+                </label>
               </div>
             ))
           }
@@ -89,7 +101,32 @@ ArtistQuestionScreen.propTypes = {
         })
     )
   }).isRequired,
-  onAnswerClick: PropTypes.func.isRequired
+  onAnswerClick: PropTypes.func.isRequired,
+  mistakes: PropTypes.number.isRequired,
+  mistakesLimit: PropTypes.number.isRequired,
+  step: PropTypes.number.isRequired
 };
 
-export default ArtistQuestionScreen;
+const mapStateToProps = (state) => (
+  {
+    question: state.questions[0],
+    mistakes: state.mistakes,
+    mistakesLimit: state.mistakesLimit,
+    step: state.step
+  }
+);
+
+const mapDispatchToProps = (dispatch) => (
+  {
+    onAnswerClick: (type, answer) => {
+      if (!checkAnswers(type, answer)) {
+        dispatch(incMistakesAction());
+      } else {
+        dispatch(incStepAction());
+      }
+    }
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArtistQuestionScreen);
+export {ArtistQuestionScreen};
