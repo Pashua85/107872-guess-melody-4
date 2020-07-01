@@ -1,0 +1,13 @@
+import mistakesReducer from './mistakesReducer';
+
+describe(`mistakesReducer`, () => {
+  test(`When it is invoked with 3 and increase step action as arguments, it should return 3`, () => {
+    const result = mistakesReducer(3, {type: `INC_STEP`});
+    expect(result).toBe(3);
+  });
+
+  test(`When it is invoked with 3 and increase mistakes action as arguments, it should return 4`, () => {
+    const result = mistakesReducer(3, {type: `INC_MISTAKES`});
+    expect(result).toBe(4);
+  });
+});
