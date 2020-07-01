@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {incStepAction, incMistakesAction} from '../../reducer';
+import {incStepAction, incMistakesAction} from '../../action-creators/action-creators';
 import {checkAnswers} from '../../helpers';
 import AudioPlayer from '../audio-player/audio-player';
 import GameMistakes from '../game-mistakes/game-mistakes';

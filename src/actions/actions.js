@@ -1,0 +1,7 @@
+const INC_MISTAKES = `INC_MISTAKES`;
+const INC_STEP = `INC_STEP`;
+
+export {
+  INC_MISTAKES,
+  INC_STEP
+};

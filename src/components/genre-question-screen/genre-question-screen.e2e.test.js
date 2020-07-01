@@ -2,6 +2,8 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import {MemoryRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
+import configureStore from 'redux-mock-store';
+import {Provider} from 'react-redux';
 import {GenreQuestionScreen} from './genre-question-screen';
 import questions from '../../mocks/test-questions';
 
@@ -11,16 +13,24 @@ Enzyme.configure({
 
 describe(`GenreQuestionScreen`, () => {
   describe(`onAnswerClick`, () => {
+
     test(`When user clicks answer-button with no checked answers,
       onAnswerClick should be called with "genre" and [false, false, false, false] as parameters`, () => {
+      const mockStore = configureStore([]);
+      const store = mockStore({
+        mistakes: 0
+      });
       const onAnswerClick = jest.fn();
+
       const wrapper = mount(
-          <MemoryRouter>
-            <GenreQuestionScreen
-              question={questions[1]}
-              onAnswerClick={onAnswerClick}
-            />
-          </MemoryRouter>
+          <Provider store={store}>
+            <MemoryRouter>
+              <GenreQuestionScreen
+                question={questions[1]}
+                onAnswerClick={onAnswerClick}
+              />
+            </MemoryRouter>
+          </Provider>
       );
       wrapper
         .find(`button.game__submit`)
@@ -31,14 +41,21 @@ describe(`GenreQuestionScreen`, () => {
 
     test(`When user click anser-button with first two ansers checked,
       onAnswerClick should be called with "genre" and [true, true, false, false] as parameters`, () => {
+      const mockStore = configureStore([]);
+      const store = mockStore({
+        mistakes: 1
+      });
       const onAnswerClick = jest.fn();
+
       const wrapper = mount(
-          <MemoryRouter>
-            <GenreQuestionScreen
-              question={questions[1]}
-              onAnswerClick={onAnswerClick}
-            />
-          </MemoryRouter>
+          <Provider store={store}>
+            <MemoryRouter>
+              <GenreQuestionScreen
+                question={questions[1]}
+                onAnswerClick={onAnswerClick}
+              />
+            </MemoryRouter>
+          </Provider>
       );
       wrapper
         .find(`input[value="bebop"]`)

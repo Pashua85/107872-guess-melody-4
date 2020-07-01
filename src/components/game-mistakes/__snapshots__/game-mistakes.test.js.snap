@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameMistkes should render correctly with 2 mistakes 1`] = `ShallowWrapper {}`;
+
+exports[`GameMistkes should render correctly with no mistakes 1`] = `ShallowWrapper {}`;

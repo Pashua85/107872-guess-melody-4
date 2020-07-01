@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import AudioPlayer from '../audio-player/audio-player';
 import GameMistakes from '../game-mistakes/game-mistakes';
-import {incStepAction, incMistakesAction} from '../../reducer';
+import {incStepAction, incMistakesAction} from '../../action-creators/action-creators';
 import {checkAnswers} from '../../helpers';
 
 const ArtistQuestionScreen = (props) => {
