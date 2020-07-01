@@ -10,4 +10,9 @@ describe(`mistakesReducer`, () => {
     const result = mistakesReducer(3, {type: `INC_MISTAKES`});
     expect(result).toBe(4);
   });
+
+  test(`When it is invoked with 3 and restart game action as arguments, it should return 0`, () => {
+    const result = mistakesReducer(3, {type: `RESTART_GAME`});
+    expect(result).toBe(0);
+  });
 });

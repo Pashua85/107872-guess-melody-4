@@ -10,4 +10,9 @@ describe(`stepReducer`, () => {
     const result = stepReducer(3, {type: `INC_MISTAKES`});
     expect(result).toBe(3);
   });
+
+  test(`When it is invoked with 3 and restart game as arguments, it should return 0`, () => {
+    const result = stepReducer(3, {type: `RESTART_GAME`});
+    expect(result).toBe(0);
+  });
 });
