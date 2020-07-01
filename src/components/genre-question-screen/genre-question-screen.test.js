@@ -14,6 +14,9 @@ describe(`GenreQuestionScreen`, () => {
     const wrapper = shallow(
         <MemoryRouter>
           <GenreQuestionScreen
+            mistakes={1}
+            mistakesLimit={3}
+            step={1}
             question={questions[1]}
             onAnswerClick={() => {}}
           />

@@ -19,6 +19,7 @@ describe(`GenreQuestionScreen`, () => {
       const mockStore = configureStore([]);
       const store = mockStore({
         mistakes: 0,
+        mistakesLimit: 3,
         step: 1
       });
       const onAnswerClick = jest.fn();
@@ -27,6 +28,9 @@ describe(`GenreQuestionScreen`, () => {
           <Provider store={store}>
             <MemoryRouter>
               <GenreQuestionScreen
+                step={1}
+                mistakes={1}
+                mistakesLimit={3}
                 question={questions[1]}
                 onAnswerClick={onAnswerClick}
               />
@@ -53,6 +57,9 @@ describe(`GenreQuestionScreen`, () => {
           <Provider store={store}>
             <MemoryRouter>
               <GenreQuestionScreen
+                step={1}
+                mistakes={1}
+                mistakesLimit={3}
                 question={questions[1]}
                 onAnswerClick={onAnswerClick}
               />
