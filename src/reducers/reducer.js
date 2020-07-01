@@ -12,7 +12,7 @@ function reducer(state, action) {
 }
 
 const initialState = {
-  mistakes: 0,
+  mistakes: 2,
   step: -1,
   questions,
   mistakesLimit: 3
