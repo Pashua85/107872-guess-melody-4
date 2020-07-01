@@ -1,28 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-
-
-const getQuestionsAmountString = (number) => {
-  const numberSting = number.toString(10);
-  const lastDigit = number % 10;
-  let questionsString = ``;
-
-  if (number >= 11 && number <= 14) {
-    questionsString = `вопросов`;
-  } else if (lastDigit === 1 && number !== 11) {
-    questionsString = `вопрос`;
-  } else if (lastDigit >= 2 && lastDigit <= 4 && (number <= 11 || number >= 14)) {
-    questionsString = `вопроса`;
-  } else {
-    questionsString = `вопросов`;
-  }
-  return `${numberSting} ${questionsString}`;
-};
+import {Redirect} from 'react-router-dom';
+import {restartGame} from '../../action-creators/action-creators';
 
 const ResultScreen = (props) => {
-  const {questions, mistakes, step} = props;
+  const {questions, mistakes, step, onAgainClick} = props;
   const questionsAmountString = getQuestionsAmountString(questions.length);
+  const mistakesString = getMistakesString(mistakes);
+
+  if (step === 0) {
+    return <Redirect to="/dev-artist" />;
+  }
 
   return (
     <section className="result">
@@ -30,8 +19,14 @@ const ResultScreen = (props) => {
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83" />
       </div>
       <h2 className="result__title">Вы настоящий меломан!</h2>
-      <p className="result__total">Вы ответили правильно на {questionsAmountString} и совершили {mistakes} ошибки</p>
-      <button className="replay" type="button">Сыграть ещё раз</button>
+      <p className="result__total">Вы ответили правильно на {questionsAmountString} и совершили {mistakesString}</p>
+      <button
+        className="replay"
+        type="button"
+        onClick={onAgainClick}
+      >
+        Сыграть ещё раз
+      </button>
     </section>
   );
 };
@@ -57,7 +52,8 @@ ResultScreen.propTypes = {
       })
   ),
   mistakes: PropTypes.number.isRequired,
-  step: PropTypes.number.isRequired
+  step: PropTypes.number.isRequired,
+  onAgainClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -66,7 +62,46 @@ const mapStateToProps = (state) => ({
   step: state.step
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onAgainClick: () => {
+    dispatch(restartGame());
+  }
+});
 
-export default connect(mapStateToProps)(ResultScreen);
+function getQuestionsAmountString(number) {
+  const numberSting = number.toString(10);
+  const lastDigit = number % 10;
+  let questionsString = ``;
+
+  if (number >= 11 && number <= 14) {
+    questionsString = `вопросов`;
+  } else if (lastDigit === 1 && number !== 11) {
+    questionsString = `вопрос`;
+  } else if (lastDigit >= 2 && lastDigit <= 4 && (number <= 11 || number >= 14)) {
+    questionsString = `вопроса`;
+  } else {
+    questionsString = `вопросов`;
+  }
+  return `${numberSting} ${questionsString}`;
+}
+
+function getMistakesString(number) {
+  const numberSting = number.toString(10);
+  const lastDigit = number % 10;
+  let mistakesString = ``;
+
+  if (number >= 11 && number <= 14) {
+    mistakesString = `ошибок`;
+  } else if (lastDigit === 1 && number !== 11) {
+    mistakesString = `ошибку`;
+  } else if (lastDigit >= 2 && lastDigit <= 4 && (number <= 11 || number >= 14)) {
+    mistakesString = `ошибки`;
+  } else {
+    mistakesString = `ошибок`;
+  }
+  return `${numberSting} ${mistakesString}`;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultScreen);
 export {ResultScreen};
 
