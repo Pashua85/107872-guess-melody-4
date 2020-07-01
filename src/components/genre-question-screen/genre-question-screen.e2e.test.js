@@ -18,7 +18,8 @@ describe(`GenreQuestionScreen`, () => {
       onAnswerClick should be called with "genre" and [false, false, false, false] as parameters`, () => {
       const mockStore = configureStore([]);
       const store = mockStore({
-        mistakes: 0
+        mistakes: 0,
+        step: 1
       });
       const onAnswerClick = jest.fn();
 
@@ -43,7 +44,8 @@ describe(`GenreQuestionScreen`, () => {
       onAnswerClick should be called with "genre" and [true, true, false, false] as parameters`, () => {
       const mockStore = configureStore([]);
       const store = mockStore({
-        mistakes: 1
+        mistakes: 1,
+        step: 1
       });
       const onAnswerClick = jest.fn();
 

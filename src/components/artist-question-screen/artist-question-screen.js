@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import AudioPlayer from '../audio-player/audio-player';
 import GameMistakes from '../game-mistakes/game-mistakes';
 import {incStepAction, incMistakesAction} from '../../action-creators/action-creators';

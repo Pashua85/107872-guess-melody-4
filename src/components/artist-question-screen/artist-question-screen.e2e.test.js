@@ -1,6 +1,6 @@
 import React from 'react';
 import Enzyme, {mount} from 'enzyme';
-import {MemoryRouter} from 'react-router-dom';
+// import {MemoryRouter} from 'react-router-dom';
 import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
@@ -14,51 +14,61 @@ Enzyme.configure({
 describe(`ArtistQuestionScreen`, () => {
   describe(`onAnswerClick`, () => {
     test(`When use clicks answer with "Thad Jones" as an artist,
-      onAcserClick should be called with "artist" and "Thad Jones" as parameters`, () => {
+      onAnswerClick should be called with "artist" and "Thad Jones" as parameters`, () => {
       const mockStore = configureStore([]);
       const store = mockStore({
-        mistakes: 0
+        mistakes: 0,
+        mistakesLimit: 3,
+        step: 0,
+        questions
       });
       const onAnswerClick = jest.fn();
 
       const wrapper = mount(
           <Provider store={store}>
-            <MemoryRouter>
-              <ArtistQuestionScreen
-                question={questions[0]}
-                onAnswerClick={onAnswerClick}
-              />
-            </MemoryRouter>
+            <ArtistQuestionScreen
+              mistakes={0}
+              mistakesLimit={3}
+              step={0}
+              question={questions[0]}
+              onAnswerClick={onAnswerClick}
+            />
           </Provider>
       );
       wrapper
-        .find(`input[value="Thad Jones"]`)
-        .simulate(`click`);
+        .find(`label[htmlFor="Thad Jones"]`)
+        .props()
+        .onClick();
       expect(onAnswerClick).toHaveBeenCalledTimes(1);
       expect(onAnswerClick).toHaveBeenCalledWith(`artist`, `Thad Jones`);
     });
 
     test(`When use clicks answer with "Miles Davis" as an artist,
-      onAcserClick should be called with "artist" and "Miles Davis" as parameters`, () => {
+      onAnswerClick should be called with "artist" and "Miles Davis" as parameters`, () => {
       const mockStore = configureStore([]);
       const store = mockStore({
-        mistakes: 0
+        mistakes: 0,
+        mistakesLimit: 3,
+        step: 0,
+        questions
       });
       const onAnswerClick = jest.fn();
 
       const wrapper = mount(
           <Provider store={store}>
-            <MemoryRouter>
-              <ArtistQuestionScreen
-                question={questions[0]}
-                onAnswerClick={onAnswerClick}
-              />
-            </MemoryRouter>
+            <ArtistQuestionScreen
+              mistakes={0}
+              mistakesLimit={3}
+              step={0}
+              question={questions[0]}
+              onAnswerClick={onAnswerClick}
+            />
           </Provider>
       );
       wrapper
-        .find(`input[value="Miles Davis"]`)
-        .simulate(`click`);
+        .find(`label[htmlFor="Miles Davis"]`)
+        .props()
+        .onClick();
       expect(onAnswerClick).toHaveBeenCalledTimes(1);
       expect(onAnswerClick).toHaveBeenCalledWith(`artist`, `Miles Davis`);
     });
