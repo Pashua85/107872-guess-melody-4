@@ -4,12 +4,11 @@ import {connect} from 'react-redux';
 import {restartGame} from '../../action-creators/action-creators';
 import {Redirect} from 'react-router-dom';
 
-
 const FailScreen = (props) => {
   const {onAgainClick, step} = props;
 
   if (step === 0) {
-    return <Redirect to="/dev-artist" />
+    return <Redirect to="/dev-artist" />;
   }
 
   return (

@@ -7,7 +7,6 @@ import {checkAnswers} from '../../helpers';
 import AudioPlayer from '../audio-player/audio-player';
 import GameMistakes from '../game-mistakes/game-mistakes';
 
-
 class GenreQuestionScreen extends React.PureComponent {
   constructor(props) {
     super(props);
