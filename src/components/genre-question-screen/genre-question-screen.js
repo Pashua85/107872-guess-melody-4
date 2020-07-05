@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -7,89 +7,76 @@ import {checkAnswers} from '../../helpers';
 import AudioPlayer from '../audio-player/audio-player';
 import GameMistakes from '../game-mistakes/game-mistakes';
 
-class GenreQuestionScreen extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.handleInputChange = this.handleInputChange.bind(this);
+const GenreQuestionScreen = (props) => {
+  const [checkedAnswers, setCheckedAnswers] = useState([false, false, false, false]);
 
-    this.state = {
-      checkedAnswers: [false, false, false, false]
-    };
-  }
-
-  handleInputChange(index) {
-    this.setState((prevState) => {
-      const newAnswers = prevState.checkedAnswers.map((answer, i) => {
-        if (i === index) {
-          return !answer;
-        } else {
-          return answer;
-        }
-      });
-      return ({
-        checkedAnswers: newAnswers
-      });
+  const handleInputChange = (index) => {
+    const newAnswers = checkedAnswers.map((answer, i) => {
+      if (i === index) {
+        return !answer;
+      } else {
+        return answer;
+      }
     });
-  }
+    setCheckedAnswers(newAnswers);
+  };
 
-  render() {
-    const {questionText, tracks, type} = this.props.question;
-    const {onAnswerClick, mistakes, mistakesLimit, step} = this.props;
+  const {questionText, tracks, type} = props.question;
+  const {onAnswerClick, mistakes, mistakesLimit, step} = props;
 
-    if (mistakes > mistakesLimit) {
-      return (
-        <Redirect to="/dev-fail" />
-      );
-    } else if (step > 1) {
-      return <Redirect to="/dev-result" />;
-    }
-
+  if (mistakes > mistakesLimit) {
     return (
-      <section className="game game--genre">
-        <header className="game__header">
-          <a className="game__back" href="#">
-            <span className="visually-hidden">Сыграть ещё раз</span>
-            <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию" />
-          </a>
-
-          <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
-            <circle
-              className="timer__line"
-              cx="390"
-              cy="390"
-              r="370"
-              style={{
-                filter: `url(#blur)`,
-                transform: `rotate(-90deg) scaleY(-1)`,
-                transformOrigin: `center`
-              }}
-            />
-          </svg>
-
-          <GameMistakes />
-        </header>
-
-        <section className="game__screen">
-          <h2 className="game__title">{questionText}</h2>
-          <form className="game__tracks">
-            <AudioPlayer tracks={tracks} onInputChange={this.handleInputChange} type={type} />
-
-            <button
-              className="game__submit button"
-              type="button"
-              onClick={() => {
-                onAnswerClick(type, this.state.checkedAnswers);
-              }}
-            >
-              Ответить
-            </button>
-
-          </form>
-        </section>
-      </section>
+      <Redirect to="/dev-fail" />
     );
+  } else if (step > 1) {
+    return <Redirect to="/dev-result" />;
   }
-}
+
+  return (
+    <section className="game game--genre">
+      <header className="game__header">
+        <a className="game__back" href="#">
+          <span className="visually-hidden">Сыграть ещё раз</span>
+          <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию" />
+        </a>
+
+        <svg xmlns="http://www.w3.org/2000/svg" className="timer" viewBox="0 0 780 780">
+          <circle
+            className="timer__line"
+            cx="390"
+            cy="390"
+            r="370"
+            style={{
+              filter: `url(#blur)`,
+              transform: `rotate(-90deg) scaleY(-1)`,
+              transformOrigin: `center`
+            }}
+          />
+        </svg>
+
+        <GameMistakes />
+      </header>
+
+      <section className="game__screen">
+        <h2 className="game__title">{questionText}</h2>
+        <form className="game__tracks">
+          <AudioPlayer tracks={tracks} onInputChange={handleInputChange} type={type} />
+
+          <button
+            className="game__submit button"
+            type="button"
+            onClick={() => {
+              onAnswerClick(type, checkedAnswers);
+            }}
+          >
+            Ответить
+          </button>
+
+        </form>
+      </section>
+    </section>
+  );
+};
 
 GenreQuestionScreen.propTypes = {
   question: PropTypes.shape({
