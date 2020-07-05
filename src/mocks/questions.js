@@ -1,5 +1,3 @@
-const AVATAR_URL = `https://api.adorable.io/avatars/17`;
-
 export default [
   {
     type: `artist`,
@@ -11,13 +9,13 @@ export default [
       }
     ],
     answers: [{
-      picture: `${AVATAR_URL}/${Math.random()}`,
+      picture: `img/kurt_elling.jpg`,
       artist: `Kurt Elling`
     }, {
-      picture: `${AVATAR_URL}/${Math.random()}`,
+      picture: `img/gregory_porter.jpg`,
       artist: `Gregory Porter`
     }, {
-      picture: `${AVATAR_URL}/${Math.random()}`,
+      picture: `img/tonny_bennett.jpg`,
       artist: `Tony Bennett`
     }]
   },
