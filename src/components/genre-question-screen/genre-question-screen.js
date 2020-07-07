@@ -69,6 +69,7 @@ const GenreQuestionScreen = (props) => {
             type="button"
             onClick={() => {
               onAnswerClick(question, checkedAnswers);
+              setCheckedAnswers([false, false, false, false]);
             }}
           >
             Ответить
@@ -106,8 +107,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onAnswerClick: (type, answer) => {
-    if (!checkAnswers(type, answer)) {
+  onAnswerClick: (question, answer) => {
+
+    if (!checkAnswers(question, answer)) {
       dispatch(ActionCreator.increaseMistakesAction());
     } else {
       dispatch(ActionCreator.increaseStepAction());

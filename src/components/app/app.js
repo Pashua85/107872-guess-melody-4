@@ -18,12 +18,12 @@ const App = () => (
       <Route exact path='/dev-genre'>
         <GenreQuestionScreen />
       </Route>
-      {/* <Route exact path='/dev-result'>
+      <Route exact path='/dev-result'>
         <ResultScreen />
       </Route>
       <Route exact path='/dev-fail'>
         <FailScreen />
-      </Route> */}
+      </Route>
     </Switch>
   </BrowserRouter>
 
