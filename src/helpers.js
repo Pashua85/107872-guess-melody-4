@@ -1,13 +1,11 @@
-import questions from './mocks/questions';
-
-function checkAnswers(type, answer) {
-  switch (type) {
+function checkAnswers(question, answer) {
+  switch (question.type) {
     case `artist`: {
-      return answer === questions[0].tracks[0].artist;
+      return answer === question.tracks[0].artist;
     }
     case `genre`: {
-      const genre = questions[1].genre;
-      const rightAnswer = questions[1].tracks.map((t) => (
+      const genre = question.genre;
+      const rightAnswer = question.tracks.map((t) => (
         t.genre === genre
       ));
       return JSON.stringify(answer) === JSON.stringify(rightAnswer);

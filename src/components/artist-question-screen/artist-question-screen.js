@@ -11,8 +11,7 @@ import {getMistakes, getMistakesLimit, getStep} from '../../store/reducers/gameR
 
 const ArtistQuestionScreen = (props) => {
   const {questionText, answers, type, tracks} = props.question;
-  const {onAnswerClick, mistakes, mistakesLimit, step} = props;
-  
+  const {onAnswerClick, mistakes, mistakesLimit, step, question} = props;
 
   if (mistakes > mistakesLimit) {
     return (
@@ -72,7 +71,7 @@ const ArtistQuestionScreen = (props) => {
                   className="artist__name"
                   htmlFor={answer.artist}
                   onClick={() => {
-                    onAnswerClick(type, answer.artist);
+                    onAnswerClick(question, answer.artist);
                   }}
                 >
                   <img className="artist__picture" src={answer.picture} alt={answer.artist} />
@@ -121,8 +120,8 @@ const mapStateToProps = (state) => (
 
 const mapDispatchToProps = (dispatch) => (
   {
-    onAnswerClick: (type, answer) => {
-      if (!checkAnswers(type, answer)) {
+    onAnswerClick: (question, answer) => {
+      if (!checkAnswers(question, answer)) {
         dispatch(ActionCreator.increaseMistakesAction());
       } else {
         dispatch(ActionCreator.increaseStepAction());

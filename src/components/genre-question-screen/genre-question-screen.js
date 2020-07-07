@@ -6,6 +6,8 @@ import ActionCreator from '../../store/action-creator/action-creator';
 import {checkAnswers} from '../../helpers';
 import AudioPlayer from '../audio-player/audio-player';
 import GameMistakes from '../game-mistakes/game-mistakes';
+import {getRandomGenreQuestion} from '../../store/reducers/dataReducer/selectors';
+import {getMistakes, getMistakesLimit, getStep} from '../../store/reducers/gameReducer/selectors';
 
 const GenreQuestionScreen = (props) => {
   const [checkedAnswers, setCheckedAnswers] = useState([false, false, false, false]);
@@ -22,7 +24,7 @@ const GenreQuestionScreen = (props) => {
   };
 
   const {questionText, tracks, type} = props.question;
-  const {onAnswerClick, mistakes, mistakesLimit, step} = props;
+  const {onAnswerClick, mistakes, mistakesLimit, step, question} = props;
 
   if (mistakes > mistakesLimit) {
     return (
@@ -66,7 +68,7 @@ const GenreQuestionScreen = (props) => {
             className="game__submit button"
             type="button"
             onClick={() => {
-              onAnswerClick(type, checkedAnswers);
+              onAnswerClick(question, checkedAnswers);
             }}
           >
             Ответить
@@ -97,10 +99,10 @@ GenreQuestionScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  question: state.questions[1],
-  mistakes: state.mistakes,
-  mistakesLimit: state.mistakesLimit,
-  step: state.step
+  question: getRandomGenreQuestion(state),
+  mistakes: getMistakes(state),
+  mistakesLimit: getMistakesLimit(state),
+  step: getStep(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
