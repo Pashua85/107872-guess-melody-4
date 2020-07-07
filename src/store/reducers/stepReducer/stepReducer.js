@@ -1,4 +1,4 @@
-import {INC_STEP, RESTART_GAME} from '../../actions/actions';
+import {INC_STEP, RESTART_GAME} from '../../action-types/action-types';
 
 function stepReducer(state = -1, action) {
   switch (action.type) {

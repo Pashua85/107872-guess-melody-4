@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {restartGame} from '../../action-creators/action-creators';
+import ActionCreator from '../../store/action-creator/action-creator';
 
 const ResultScreen = (props) => {
   const {questions, mistakes, step, onAgainClick} = props;
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onAgainClick: () => {
-    dispatch(restartGame());
+    dispatch(ActionCreator.restartGame());
   }
 });
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {incStepAction} from '../../action-creators/action-creators';
+import ActionCreator from '../../store/action-creator/action-creator';
 
 const WellcomeScreen = (props) => {
   const {mistakesLimit, onStartClick} = props;
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onStartClick: () => (
-    dispatch(incStepAction())
+    dispatch(ActionCreator.increaseStepAction())
   )
 });
 

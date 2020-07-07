@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {restartGame} from '../../action-creators/action-creators';
+import ActionCreator from '../../store/action-creator/action-creator';
 import {Redirect} from 'react-router-dom';
 
 const FailScreen = (props) => {
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onAgainClick: () => {
-    dispatch(restartGame());
+    dispatch(ActionCreator.restartGame());
   }
 });
 

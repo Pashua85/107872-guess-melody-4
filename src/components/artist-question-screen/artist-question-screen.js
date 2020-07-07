@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import AudioPlayer from '../audio-player/audio-player';
 import GameMistakes from '../game-mistakes/game-mistakes';
-import {incStepAction, incMistakesAction} from '../../action-creators/action-creators';
+import ActionCreator from '../../store/action-creator/action-creator';
 import {checkAnswers} from '../../helpers';
 
 const ArtistQuestionScreen = (props) => {
@@ -120,9 +120,9 @@ const mapDispatchToProps = (dispatch) => (
   {
     onAnswerClick: (type, answer) => {
       if (!checkAnswers(type, answer)) {
-        dispatch(incMistakesAction());
+        dispatch(ActionCreator.increaseMistakesAction());
       } else {
-        dispatch(incStepAction());
+        dispatch(ActionCreator.increaseStepAction());
       }
     }
   }

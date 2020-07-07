@@ -1,8 +1,8 @@
-import mistakesReducer from '../reducers/mistakesReducer/mistakesReducer';
-import stepReducer from '../reducers/stepReducer/stepReducer';
-import questionsReducer from '../reducers/questionsReducer/questionsReducer';
-import mistakesLimitReducer from '../reducers/mistakesLimitReducer/mistakesLimitReducer';
-import questions from '../mocks/questions';
+import mistakesReducer from './mistakesReducer/mistakesReducer';
+import stepReducer from './stepReducer/stepReducer';
+import questionsReducer from './questionsReducer/questionsReducer';
+import mistakesLimitReducer from './mistakesLimitReducer/mistakesLimitReducer';
+import questions from '../../mocks/questions';
 
 function reducer(state = {}, action) {
   return {
