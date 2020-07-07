@@ -1,6 +1,6 @@
 import {INC_MISTAKES, RESTART_GAME} from '../../actions/actions';
 
-function mistakesReducer(state, action) {
+function mistakesReducer(state = 0, action) {
   switch (action.type) {
     case INC_MISTAKES: {
       return state + 1;
