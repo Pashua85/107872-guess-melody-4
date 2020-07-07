@@ -1,6 +1,6 @@
 import questionsReducer from './questionsReducer/questionsReducer';
 
-const dataReducer = (dataState, action) => ({
+const dataReducer = (dataState = {}, action) => ({
   questions: questionsReducer(dataState.questions, action)
 });
 

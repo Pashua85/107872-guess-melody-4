@@ -6,10 +6,13 @@ import AudioPlayer from '../audio-player/audio-player';
 import GameMistakes from '../game-mistakes/game-mistakes';
 import ActionCreator from '../../store/action-creator/action-creator';
 import {checkAnswers} from '../../helpers';
+import {getRandomArtistQuestion} from '../../store/reducers/dataReducer/selectors';
+import {getMistakes, getMistakesLimit, getStep} from '../../store/reducers/gameReducer/selectors';
 
 const ArtistQuestionScreen = (props) => {
   const {questionText, answers, type, tracks} = props.question;
   const {onAnswerClick, mistakes, mistakesLimit, step} = props;
+  
 
   if (mistakes > mistakesLimit) {
     return (
@@ -109,10 +112,10 @@ ArtistQuestionScreen.propTypes = {
 
 const mapStateToProps = (state) => (
   {
-    question: state.questions[0],
-    mistakes: state.mistakes,
-    mistakesLimit: state.mistakesLimit,
-    step: state.step
+    question: getRandomArtistQuestion(state),
+    mistakes: getMistakes(state),
+    mistakesLimit: getMistakesLimit(state),
+    step: getStep(state)
   }
 );
 

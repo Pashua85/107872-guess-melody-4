@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import ActionCreator from '../../store/action-creator/action-creator';
+import {getMistakesLimit} from '../../store/reducers/gameReducer/selectors';
 
 const WellcomeScreen = (props) => {
   const {mistakesLimit, onStartClick} = props;
@@ -34,7 +35,7 @@ WellcomeScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  mistakesLimit: state.mistakesLimit
+  mistakesLimit: getMistakesLimit(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

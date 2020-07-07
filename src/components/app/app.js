@@ -7,26 +7,26 @@ import ResultScreen from '../result-screen/result-screen';
 import FailScreen from '../fail-screen/fail-screen';
 
 const App = () => (
-  // <BrowserRouter>
-  //   <Switch>
-  //     <Route exact path='/'>
-  //       <WellcomeScreen />
-  //     </Route>
-  //     <Route exact path='/dev-artist'>
-  //       <ArtistQuestionScreen />
-  //     </Route>
-  //     <Route exact path='/dev-genre'>
-  //       <GenreQuestionScreen />
-  //     </Route>
-  //     <Route exact path='/dev-result'>
-  //       <ResultScreen />
-  //     </Route>
-  //     <Route exact path='/dev-fail'>
-  //       <FailScreen />
-  //     </Route>
-  //   </Switch>
-  // </BrowserRouter>
-  <div></div>
+  <BrowserRouter>
+    <Switch>
+      <Route exact path='/'>
+        <WellcomeScreen />
+      </Route>
+      <Route exact path='/dev-artist'>
+        <ArtistQuestionScreen />
+      </Route>
+      {/* <Route exact path='/dev-genre'>
+        <GenreQuestionScreen />
+      </Route>
+      <Route exact path='/dev-result'>
+        <ResultScreen />
+      </Route>
+      <Route exact path='/dev-fail'>
+        <FailScreen />
+      </Route> */}
+    </Switch>
+  </BrowserRouter>
+
 );
 
 
