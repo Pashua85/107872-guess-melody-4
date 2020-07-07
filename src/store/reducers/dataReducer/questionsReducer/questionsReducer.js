@@ -1,4 +1,4 @@
-import {LOAD_QUESTIONS} from '../../action-types/action-types';
+import {LOAD_QUESTIONS} from '../../../action-types/action-types';
 
 const questionsReducer = (state = [], action) => {
   switch (action.type) {

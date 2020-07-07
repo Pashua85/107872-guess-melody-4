@@ -1,4 +1,4 @@
-import {INC_MISTAKES, RESTART_GAME} from '../../action-types/action-types';
+import {INC_MISTAKES, RESTART_GAME} from '../../../action-types/action-types';
 
 function mistakesReducer(state = 0, action) {
   switch (action.type) {
