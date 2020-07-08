@@ -1,6 +1,6 @@
 import {REQUIRED_AUTHORIZATION} from '../../../action-types/action-types';
 
-const AUTH_STATUS = {
+export const AUTH_STATUS = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`
 };
