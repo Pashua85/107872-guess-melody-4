@@ -1,4 +1,4 @@
-import ActionCreator from '../action-creator/action-creator';
+import ActionCreator from '../../action-creator/action-creator';
 
 const DataOperation = {
   loadQuestions: () => (dispatch, getState, api) => {

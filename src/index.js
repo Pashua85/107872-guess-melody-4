@@ -7,7 +7,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import reducer from './store/reducers/reducer';
 import App from './components/app/app';
 import {createAPI} from './api';
-import DataOperation from './store/operations/data-operation';
+import DataOperation from './store/operations/data-operation/data-operation';
 
 const api = createAPI(() => {});
 const store = createStore(
