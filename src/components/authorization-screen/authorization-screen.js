@@ -1,6 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
+import {getAuthStatus} from '../../store/reducers/userReducer/selectors';
+import UserOperation from '../../store/operations/user-operation/user-operation';
 
-const AuthorizationScreen = () => {
+const AuthorizationScreen = (props) => {
+  const {authStatus, onLoginClick} = props;
+
+  const [login, setLogin] = useState(``);
+  const [password, setPassword] = useState(``);
+
+  const handleLoginChange = (e) => {
+    setLogin(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  if (authStatus === `AUTH`) {
+    return (
+      <Redirect to="/dev-result" />
+    );
+  }
+
   return (
     <section className="login">
       <div className="login__logo">
@@ -11,18 +35,59 @@ const AuthorizationScreen = () => {
       <form className="login__form" action="">
         <p className="login__field">
           <label className="login__label" htmlFor="name">Логин</label>
-          <input className="login__input" type="text" name="name" id="name" />
+          <input
+            autoComplete="email"
+            className="login__input"
+            type="email"
+            name="name"
+            id="name"
+            onChange={handleLoginChange}
+          />
         </p>
         <p className="login__field">
           <label className="login__label" htmlFor="password">Пароль</label>
-          <input className="login__input" type="text" name="password" id="password" />
+          <input
+            autoComplete="off"
+            className="login__input"
+            type="password"
+            name="password"
+            id="password"
+            onChange={handlePasswordChange}
+          />
           <span className="login__error">Неверный пароль</span>
         </p>
-        <button className="login__button button" type="submit">Войти</button>
+        <button
+          className="login__button button"
+          type="submit"
+          onClick={(e) => {
+            e.preventDefault();
+            onLoginClick({
+              login,
+              password
+            });
+          }}
+        >
+          Войти
+        </button>
       </form>
       <button className="replay" type="button">Сыграть ещё раз</button>
     </section>
   );
 };
 
-export default AuthorizationScreen;
+AuthorizationScreen.propTypes = {
+  authStatus: PropTypes.string.isRequired,
+  onLoginClick: PropTypes.func.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  authStatus: getAuthStatus(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoginClick: (authData) => {
+    dispatch(UserOperation.login(authData));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthorizationScreen);
