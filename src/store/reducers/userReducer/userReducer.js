@@ -1,12 +1,7 @@
-const AUTHORIZATION_STATUS = {
-  AUTH: `AUTH`,
-  NO_AUTH: `NO_AUTH`
-};
+import authorizationStatusReducer from './authorizationStatusReducer/authorizationStatusReducer';
 
-const initialState = {
-  authorizationStatus: AUTHORIZATION_STATUS.NO_AUTH
-};
-
-const userReduder = (userState = initialState) => (userState);
+const userReduder = (userState = {}, action) => ({
+  authorizationStatus: authorizationStatusReducer(userState, action)
+});
 
 export default userReduder;
