@@ -16,10 +16,11 @@ describe(`ArtistQuestionScreen`, () => {
       onAnswerClick should be called with "artist" and "Thad Jones" as parameters`, () => {
       const mockStore = configureStore([]);
       const store = mockStore({
-        mistakes: 0,
-        mistakesLimit: 3,
-        step: 0,
-        questions
+        GAME: {
+          mistakes: 0,
+          mistakesLimit: 3,
+          step: 0,
+        }
       });
       const onAnswerClick = jest.fn();
 
@@ -39,17 +40,18 @@ describe(`ArtistQuestionScreen`, () => {
         .props()
         .onClick();
       expect(onAnswerClick).toHaveBeenCalledTimes(1);
-      expect(onAnswerClick).toHaveBeenCalledWith(`artist`, `Thad Jones`);
+      expect(onAnswerClick).toHaveBeenCalledWith(questions[0], `Thad Jones`);
     });
 
     test(`When use clicks answer with "Miles Davis" as an artist,
       onAnswerClick should be called with "artist" and "Miles Davis" as parameters`, () => {
       const mockStore = configureStore([]);
       const store = mockStore({
-        mistakes: 0,
-        mistakesLimit: 3,
-        step: 0,
-        questions
+        GAME: {
+          mistakes: 0,
+          mistakesLimit: 3,
+          step: 0,
+        }
       });
       const onAnswerClick = jest.fn();
 
@@ -69,7 +71,7 @@ describe(`ArtistQuestionScreen`, () => {
         .props()
         .onClick();
       expect(onAnswerClick).toHaveBeenCalledTimes(1);
-      expect(onAnswerClick).toHaveBeenCalledWith(`artist`, `Miles Davis`);
+      expect(onAnswerClick).toHaveBeenCalledWith(questions[0], `Miles Davis`);
     });
   });
 });

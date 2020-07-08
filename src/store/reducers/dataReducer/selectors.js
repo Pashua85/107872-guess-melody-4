@@ -1,22 +1,9 @@
-import {createSelector} from 'reselect';
 import NameSpace from '../name-space';
 import {createArtistQuestion, createGenreQuestion} from '../../../adapters/question';
 
 export const getQuestions = (state) => {
   return state[NameSpace.DATA].questions;
 };
-
-// export const getRandomArtistQuestion = createSelector(
-//     getQuestions,
-//     (questions) => {
-//       // console.log(createArtistQuestion(questions[Math.floor(Math.random() * questions.length)]))
-//       const artistQuestions = questions.filter((q) => {
-//         return q.type === `artist`;
-//       });
-//       console.log(artistQuestions);
-//       return artistQuestions[Math.floor(Math.random() * questions.length)];
-//     }
-// );
 
 export const getRandomArtistQuestion = (state) => {
 
