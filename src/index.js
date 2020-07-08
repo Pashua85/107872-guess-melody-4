@@ -14,6 +14,7 @@ import AUTH_STATUS from './store/reducers/userReducer/authStatusReducer/authStat
 
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AUTH_STATUS.NO_AUTH));
+  console.log('onUnauthorized was called');
 };
 
 const api = createAPI(onUnauthorized);
