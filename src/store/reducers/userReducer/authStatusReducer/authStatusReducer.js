@@ -1,11 +1,11 @@
 import {REQUIRED_AUTHORIZATION} from '../../../action-types/action-types';
 
-const AUTHORIZATION_STATUS = {
+const AUTH_STATUS = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`
 };
 
-const authorizationStatusReducer = (state = AUTHORIZATION_STATUS.NO_AUTH, action) => {
+const authStatusReducer = (state = AUTH_STATUS.NO_AUTH, action) => {
   switch (action.type) {
     case REQUIRED_AUTHORIZATION: {
       return action.payload;
@@ -16,4 +16,4 @@ const authorizationStatusReducer = (state = AUTHORIZATION_STATUS.NO_AUTH, action
   }
 };
 
-export default authorizationStatusReducer;
+export default authStatusReducer;

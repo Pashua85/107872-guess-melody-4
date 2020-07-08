@@ -1,7 +1,7 @@
-import authorizationStatusReducer from './authorizationStatusReducer/authorizationStatusReducer';
+import authStatusReducer from './authStatusReducer/authStatusReducer';
 
 const userReduder = (userState = {}, action) => ({
-  authorizationStatus: authorizationStatusReducer(userState, action)
+  authStatus: authStatusReducer(userState, action)
 });
 
 export default userReduder;
