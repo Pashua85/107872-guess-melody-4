@@ -7,6 +7,7 @@ import {checkAnswers} from '../../helpers';
 import AudioPlayer from '../audio-player/audio-player';
 import GameMistakes from '../game-mistakes/game-mistakes';
 import {getRandomGenreQuestion} from '../../store/reducers/dataReducer/selectors';
+import {getAuthStatus} from '../../store/reducers/userReducer/selectors';
 import {getMistakes, getMistakesLimit, getStep} from '../../store/reducers/gameReducer/selectors';
 
 const GenreQuestionScreen = (props) => {
@@ -24,14 +25,22 @@ const GenreQuestionScreen = (props) => {
   };
 
   const {questionText, tracks, type} = props.question;
-  const {onAnswerClick, mistakes, mistakesLimit, step, question} = props;
+  const {onAnswerClick, mistakes, mistakesLimit, step, question, authStatus} = props;
 
   if (mistakes > mistakesLimit) {
     return (
       <Redirect to="/dev-fail" />
     );
   } else if (step > 1) {
-    return <Redirect to="/dev-result" />;
+    if (authStatus === `AUTH`) {
+      return (
+        <Redirect to="/dev-result" />
+      );
+    } else {
+      return (
+        <Redirect to="/dev-login" />
+      );
+    }
   }
 
   return (
@@ -96,14 +105,16 @@ GenreQuestionScreen.propTypes = {
   onAnswerClick: PropTypes.func.isRequired,
   mistakes: PropTypes.number.isRequired,
   mistakesLimit: PropTypes.number.isRequired,
-  step: PropTypes.number.isRequired
+  step: PropTypes.number.isRequired,
+  authStatus: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => ({
   question: getRandomGenreQuestion(state),
   mistakes: getMistakes(state),
   mistakesLimit: getMistakesLimit(state),
-  step: getStep(state)
+  step: getStep(state),
+  authStatus: getAuthStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

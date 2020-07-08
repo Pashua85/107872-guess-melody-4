@@ -8,8 +8,16 @@ import reducer from './store/reducers/reducer';
 import App from './components/app/app';
 import {createAPI} from './api';
 import DataOperation from './store/operations/data-operation/data-operation';
+import UserOperation from './store/operations/user-operation/user-operation';
+import ActionCreator from './store/action-creator/action-creator';
+import AUTH_STATUS from './store/reducers/userReducer/authStatusReducer/authStatusReducer';
 
-const api = createAPI(() => {});
+const onUnauthorized = () => {
+  store.dispatch(ActionCreator.requireAuthorization(AUTH_STATUS.NO_AUTH));
+};
+
+const api = createAPI(onUnauthorized);
+
 const store = createStore(
     reducer,
     composeWithDevTools(
@@ -17,6 +25,7 @@ const store = createStore(
     )
 );
 
+store.dispatch(UserOperation.checkAuth());
 store.dispatch(DataOperation.loadQuestions());
 
 ReactDOM.render(

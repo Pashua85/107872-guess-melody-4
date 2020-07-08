@@ -1,6 +1,11 @@
 import axios from 'axios';
 
-export const createAPI = (dispatch) => {
+const Error = {
+  UNAUTHORIZED: 401
+};
+
+
+export const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: `https://htmlacademy-react-3.appspot.com/guess-melody`,
     timeout: 5000,
@@ -12,7 +17,13 @@ export const createAPI = (dispatch) => {
   };
 
   const onFail = (err) => {
-    dispatch();
+    const {response} = err;
+
+    if (response.status === Error.UNAUTHORIZED) {
+      onUnauthorized();
+      throw err;
+    }
+
     throw err;
   };
 

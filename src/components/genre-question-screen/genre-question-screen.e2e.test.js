@@ -22,7 +22,7 @@ describe(`GenreQuestionScreen`, () => {
           mistakes: 0,
           mistakesLimit: 3,
           step: 1
-        },
+        }
       });
       const onAnswerClick = jest.fn();
 
@@ -35,6 +35,7 @@ describe(`GenreQuestionScreen`, () => {
                 mistakesLimit={3}
                 question={questions[1]}
                 onAnswerClick={onAnswerClick}
+                authStatus={`NO_AUTH`}
               />
             </MemoryRouter>
           </Provider>
@@ -54,7 +55,7 @@ describe(`GenreQuestionScreen`, () => {
           mistakes: 0,
           mistakesLimit: 3,
           step: 1
-        },
+        }
       });
       const onAnswerClick = jest.fn();
 
@@ -67,6 +68,7 @@ describe(`GenreQuestionScreen`, () => {
                 mistakesLimit={3}
                 question={questions[1]}
                 onAnswerClick={onAnswerClick}
+                authStatus={`NO_AUTH`}
               />
             </MemoryRouter>
           </Provider>
