@@ -5,6 +5,7 @@ import ArtistQuestionScreen from '../artist-question-screen/artist-question-scre
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
 import ResultScreen from '../result-screen/result-screen';
 import FailScreen from '../fail-screen/fail-screen';
+import AuthorizationScreen from '../authorization-screen/authorization-screen';
 
 const App = () => (
   <BrowserRouter>
@@ -23,6 +24,9 @@ const App = () => (
       </Route>
       <Route exact path='/dev-fail'>
         <FailScreen />
+      </Route>
+      <Route exact path='/dev-login'>
+        <AuthorizationScreen />
       </Route>
     </Switch>
   </BrowserRouter>
