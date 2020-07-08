@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {getMistakes} from '../../store/reducers/gameReducer/selectors';
 
 const GameMistakes = (props) => {
   const wrongs = [];
@@ -21,7 +22,7 @@ GameMistakes.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  mistakes: state.mistakes
+  mistakes: getMistakes(state)
 });
 
 export default connect(mapStateToProps)(GameMistakes);

@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
-import {restartGame} from '../../action-creators/action-creators';
+import ActionCreator from '../../store/action-creator/action-creator';
+import {getStep, getMistakes} from '../../store/reducers/gameReducer/selectors';
 
 const ResultScreen = (props) => {
-  const {questions, mistakes, step, onAgainClick} = props;
-  const questionsAmountString = getQuestionsAmountString(questions.length);
+  const {questionsAmount, mistakes, step, onAgainClick} = props;
+  const questionsAmountString = getQuestionsAmountString(questionsAmount);
   const mistakesString = getMistakesString(mistakes);
 
   if (step === 0) {
@@ -32,39 +33,21 @@ const ResultScreen = (props) => {
 };
 
 ResultScreen.propTypes = {
-  questions: PropTypes.arrayOf(
-      PropTypes.shape({
-        type: PropTypes.string,
-        questionText: PropTypes.string,
-        tracks: PropTypes.arrayOf(
-            PropTypes.shape({
-              src: PropTypes.string.isRequired,
-              artist: PropTypes.string,
-              genre: PropTypes.string
-            })
-        ),
-        answers: PropTypes.arrayOf(
-            PropTypes.shape({
-              picture: PropTypes.string,
-              artist: PropTypes.string
-            })
-        )
-      })
-  ),
+  questionsAmount: PropTypes.number.isRequired,
   mistakes: PropTypes.number.isRequired,
   step: PropTypes.number.isRequired,
   onAgainClick: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
-  questions: state.questions,
-  mistakes: state.mistakes,
-  step: state.step
+  questionsAmount: getStep(state),
+  mistakes: getMistakes(state),
+  step: getStep(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onAgainClick: () => {
-    dispatch(restartGame());
+    dispatch(ActionCreator.restartGame());
   }
 });
 

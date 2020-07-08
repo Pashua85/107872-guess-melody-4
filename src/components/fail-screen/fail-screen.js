@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {restartGame} from '../../action-creators/action-creators';
+import ActionCreator from '../../store/action-creator/action-creator';
 import {Redirect} from 'react-router-dom';
+import {getStep} from '../../store/reducers/gameReducer/selectors';
 
 const FailScreen = (props) => {
   const {onAgainClick, step} = props;
@@ -35,12 +36,12 @@ FailScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  step: state.step
+  step: getStep(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onAgainClick: () => {
-    dispatch(restartGame());
+    dispatch(ActionCreator.restartGame());
   }
 });
 

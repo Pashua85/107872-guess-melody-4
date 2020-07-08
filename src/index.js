@@ -1,24 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
-import {reducer, initialState} from './reducers/reducer';
+import thunk from 'redux-thunk';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import reducer from './store/reducers/reducer';
 import App from './components/app/app';
-import questions from './mocks/questions';
-import settings from './mocks/settings';
+import {createAPI} from './api';
+import DataOperation from './store/operations/data-operation/data-operation';
 
+const api = createAPI(() => {});
 const store = createStore(
     reducer,
-    initialState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
+
+store.dispatch(DataOperation.loadQuestions());
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        errorAmount={settings.errorAmount}
-        questions={questions}
-      />
+      <App />
     </Provider>
     ,
     document.querySelector(`#root`)

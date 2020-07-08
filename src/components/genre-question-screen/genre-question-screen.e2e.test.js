@@ -18,9 +18,11 @@ describe(`GenreQuestionScreen`, () => {
       onAnswerClick should be called with "genre" and [false, false, false, false] as parameters`, () => {
       const mockStore = configureStore([]);
       const store = mockStore({
-        mistakes: 0,
-        mistakesLimit: 3,
-        step: 1
+        GAME: {
+          mistakes: 0,
+          mistakesLimit: 3,
+          step: 1
+        },
       });
       const onAnswerClick = jest.fn();
 
@@ -41,15 +43,18 @@ describe(`GenreQuestionScreen`, () => {
         .find(`button.game__submit`)
         .simulate(`click`);
       expect(onAnswerClick).toHaveBeenCalledTimes(1);
-      expect(onAnswerClick).toHaveBeenCalledWith(`genre`, [false, false, false, false]);
+      expect(onAnswerClick).toHaveBeenCalledWith(questions[1], [false, false, false, false]);
     });
 
     test(`When user click anser-button with first two ansers checked,
       onAnswerClick should be called with "genre" and [true, true, false, false] as parameters`, () => {
       const mockStore = configureStore([]);
       const store = mockStore({
-        mistakes: 1,
-        step: 1
+        GAME: {
+          mistakes: 0,
+          mistakesLimit: 3,
+          step: 1
+        },
       });
       const onAnswerClick = jest.fn();
 
@@ -76,7 +81,7 @@ describe(`GenreQuestionScreen`, () => {
         .find(`button.game__submit`)
         .simulate(`click`);
       expect(onAnswerClick).toHaveBeenCalledTimes(1);
-      expect(onAnswerClick).toHaveBeenCalledWith(`genre`, [true, true, false, false]);
+      expect(onAnswerClick).toHaveBeenCalledWith(questions[1], [true, true, false, false]);
     });
   });
 });

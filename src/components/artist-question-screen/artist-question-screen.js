@@ -4,12 +4,14 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import AudioPlayer from '../audio-player/audio-player';
 import GameMistakes from '../game-mistakes/game-mistakes';
-import {incStepAction, incMistakesAction} from '../../action-creators/action-creators';
+import ActionCreator from '../../store/action-creator/action-creator';
 import {checkAnswers} from '../../helpers';
+import {getRandomArtistQuestion} from '../../store/reducers/dataReducer/selectors';
+import {getMistakes, getMistakesLimit, getStep} from '../../store/reducers/gameReducer/selectors';
 
 const ArtistQuestionScreen = (props) => {
   const {questionText, answers, type, tracks} = props.question;
-  const {onAnswerClick, mistakes, mistakesLimit, step} = props;
+  const {onAnswerClick, mistakes, mistakesLimit, step, question} = props;
 
   if (mistakes > mistakesLimit) {
     return (
@@ -69,7 +71,7 @@ const ArtistQuestionScreen = (props) => {
                   className="artist__name"
                   htmlFor={answer.artist}
                   onClick={() => {
-                    onAnswerClick(type, answer.artist);
+                    onAnswerClick(question, answer.artist);
                   }}
                 >
                   <img className="artist__picture" src={answer.picture} alt={answer.artist} />
@@ -109,20 +111,20 @@ ArtistQuestionScreen.propTypes = {
 
 const mapStateToProps = (state) => (
   {
-    question: state.questions[0],
-    mistakes: state.mistakes,
-    mistakesLimit: state.mistakesLimit,
-    step: state.step
+    question: getRandomArtistQuestion(state),
+    mistakes: getMistakes(state),
+    mistakesLimit: getMistakesLimit(state),
+    step: getStep(state)
   }
 );
 
 const mapDispatchToProps = (dispatch) => (
   {
-    onAnswerClick: (type, answer) => {
-      if (!checkAnswers(type, answer)) {
-        dispatch(incMistakesAction());
+    onAnswerClick: (question, answer) => {
+      if (!checkAnswers(question, answer)) {
+        dispatch(ActionCreator.increaseMistakesAction());
       } else {
-        dispatch(incStepAction());
+        dispatch(ActionCreator.increaseStepAction());
       }
     }
   }
