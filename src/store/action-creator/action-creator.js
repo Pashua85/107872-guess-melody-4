@@ -1,4 +1,4 @@
-import {INC_MISTAKES, INC_STEP, RESTART_GAME, LOAD_QUESTIONS, REQUIRED_AUTHORIZATION} from '../action-types/action-types';
+import {INC_MISTAKES, INC_STEP, RESTART_GAME, LOAD_QUESTIONS, REQUIRE_AUTHORIZATION} from '../action-types/action-types';
 
 const ActionCreator = {
   increaseMistakesAction: () => ({
@@ -15,7 +15,7 @@ const ActionCreator = {
     payload: questions
   }),
   requireAuthorization: (status) => ({
-    type: REQUIRED_AUTHORIZATION,
+    type: REQUIRE_AUTHORIZATION,
     payload: status
   })
 };
