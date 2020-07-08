@@ -19,6 +19,7 @@ describe(`GenreQuestionScreen`, () => {
             step={1}
             question={questions[1]}
             onAnswerClick={() => {}}
+            authStatus={`NO_AUTH`}
           />
         </MemoryRouter>
     );

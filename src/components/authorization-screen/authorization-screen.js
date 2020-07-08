@@ -78,7 +78,7 @@ const AuthorizationScreen = (props) => {
 AuthorizationScreen.propTypes = {
   authStatus: PropTypes.string.isRequired,
   onLoginClick: PropTypes.func.isRequired
-}
+};
 
 const mapStateToProps = (state) => ({
   authStatus: getAuthStatus(state)
