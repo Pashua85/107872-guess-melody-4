@@ -22,7 +22,7 @@ const AuthorizationScreen = () => {
       </form>
       <button className="replay" type="button">Сыграть ещё раз</button>
     </section>
-  )
+  );
 };
 
 export default AuthorizationScreen;
